@@ -1,0 +1,16 @@
+all: progThreadClient
+
+progThreadClient: client.o libServer.a 
+        gcc -lm -o progThreadClient client.o -L. -lmylib
+
+client.o: client.cpp
+        gcc -O -c server.cpp 
+
+library.o: library.cpp library.h
+        gcc -O -c library.c
+
+
+libServer.a: library.o  
+        ar rcs libServer.a 
+
+libs: libServer.a

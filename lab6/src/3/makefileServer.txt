@@ -1,0 +1,16 @@
+all: progThreadServer
+
+progThreadServer: server.o libServer.a 
+        gcc -lm -o progThreadServer server.o -L. -lmylib
+
+server.o: server.cpp
+        gcc -O -c server.cpp 
+
+library.o: library.cpp library.h
+        gcc -O -c library.c
+
+
+libServer.a: library.o  #let's link library files into a static library
+        ar rcs libServer.a 
+
+libs: libServer.a
